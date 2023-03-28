@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.project.dtos.CreateWallet;
+import org.project.dtos.wallet.WalletDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +12,8 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 
 import java.math.BigDecimal;
 
@@ -200,8 +203,29 @@ public class WalletRestControllerTests {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is("Account 4")))
+                .andExpect(jsonPath("$.name", is("Account 3")))
                 .andExpect(jsonPath("$.balance").value(is(300.0), Double.class));
+    }
+
+    @Test
+    @WithMockUser(username = "spring")
+    public void getWalletByAccountNumber_shouldSucceedWith200() throws Exception {
+
+       MvcResult mvcResult =  mockMvc.perform(post("/api/v1/wallet/{userId}", 1).content(mapper.writeValueAsString(CreateWallet.builder().name("Account 1").currencyId(1L).build()))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk()).andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+        WalletDTO walletDTO
+                = mapper.readValue(responseBody, WalletDTO.class);
+        System.out.println(walletDTO);
+
+        mockMvc.perform(get("/api/v1/wallet/account-number/{accountNumber}", walletDTO.getAccountNumber())
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.accountNumber", is(walletDTO.getAccountNumber())));
     }
 
 }

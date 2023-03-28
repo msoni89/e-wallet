@@ -301,7 +301,12 @@ public class WalletService implements IWalletService {
 
     @Override
     public WalletDTO getWalletByAccountNumber(String accountNumber) {
-      return walletRepository.findByAccountNumber(accountNumber).map(wallet -> WalletDTO.builder().build())
+      return walletRepository.findByAccountNumber(accountNumber).map(wallet -> WalletDTO.builder()
+                      .accountNumber(wallet.getAccountNumber())
+                      .balance(wallet.getBalance())
+                      .enabled(wallet.getEnabled())
+                      .name(wallet.getName()).build())
+                 // TODO set other parameter, if required.
               .orElseThrow(() -> new NotFoundException(String.format("Wallet does not exist with given %s", accountNumber)));
     }
 }

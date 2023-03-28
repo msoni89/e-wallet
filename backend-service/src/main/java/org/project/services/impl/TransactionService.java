@@ -4,20 +4,18 @@ import lombok.AllArgsConstructor;
 import org.project.dtos.CurrencyDTO;
 import org.project.dtos.wallet.TransactionDTO;
 import org.project.dtos.wallet.WalletDTO;
-import org.project.models.Transaction;
-import org.project.repositories.TransactionRepository;
-import org.project.services.TransactionService;
+import org.project.repositories.ITransactionRepository;
+import org.project.services.ITransactionService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor
-public class TransactionServiceImpl implements TransactionService {
+public class TransactionService implements ITransactionService {
 
-    private final TransactionRepository transactionRepository;
+    private final ITransactionRepository transactionRepository;
 
     @Override
     public List<TransactionDTO> listUserWalletTransactions(Long id) {

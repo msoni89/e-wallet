@@ -4,7 +4,7 @@ package org.project.services.impl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.project.repositories.TokenRepository;
+import org.project.repositories.ITokenRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LogoutService implements LogoutHandler {
 
-    private final TokenRepository tokenRepository;
+    private final ITokenRepository tokenRepository;
 
     @Override
     public void logout(

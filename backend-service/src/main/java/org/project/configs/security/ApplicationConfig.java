@@ -1,7 +1,7 @@
 package org.project.configs.security;
 
 import lombok.RequiredArgsConstructor;
-import org.project.repositories.UserRepository;
+import org.project.repositories.IUserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-    private final UserRepository repository;
+    private final IUserRepository repository;
 
     @Bean
     public UserDetailsService userDetailsService() {

@@ -10,8 +10,8 @@ import org.project.enums.Role;
 import org.project.enums.TokenType;
 import org.project.models.Token;
 import org.project.models.User;
-import org.project.repositories.TokenRepository;
-import org.project.repositories.UserRepository;
+import org.project.repositories.ITokenRepository;
+import org.project.repositories.IUserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,8 +20,8 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-    private final UserRepository userRepository;
-    private final TokenRepository tokenRepository;
+    private final IUserRepository userRepository;
+    private final ITokenRepository tokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;

@@ -12,10 +12,11 @@ import org.project.models.Currency;
 import org.project.models.Transaction;
 import org.project.models.User;
 import org.project.models.Wallet;
-import org.project.repositories.CurrencyRepository;
-import org.project.repositories.TransactionRepository;
-import org.project.repositories.UserRepository;
-import org.project.repositories.WalletRepository;
+import org.project.repositories.ICurrencyRepository;
+import org.project.repositories.ITransactionRepository;
+import org.project.repositories.IUserRepository;
+import org.project.repositories.IWalletRepository;
+import org.project.services.IWalletService;
 import org.project.utils.GenerateRandomAccountNumber;
 import org.springframework.stereotype.Service;
 
@@ -26,16 +27,17 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class WalletService implements org.project.services.WalletService {
+public class WalletService implements IWalletService {
 
+    // Can be configurable by env parameter
     private final Integer MIN_OPERATIONAL_AMOUNT = 0;
 
-    private final WalletRepository walletRepository;
-    private final TransactionRepository transactionRepository;
+    private final IWalletRepository walletRepository;
+    private final ITransactionRepository transactionRepository;
 
-    private final UserRepository userRepository;
+    private final IUserRepository userRepository;
 
-    private final CurrencyRepository currencyRepository;
+    private final ICurrencyRepository currencyRepository;
 
     /**
      * Debit amount
@@ -295,5 +297,11 @@ public class WalletService implements org.project.services.WalletService {
                 .balance(wallet.getBalance())
                 .accountNumber(wallet.getAccountNumber())
                 .build()).toList();
+    }
+
+    @Override
+    public WalletDTO getWalletByAccountNumber(String accountNumber) {
+      return walletRepository.findByAccountNumber(accountNumber).map(wallet -> WalletDTO.builder().build())
+              .orElseThrow(() -> new NotFoundException(String.format("Wallet does not exist with given %s", accountNumber)));
     }
 }

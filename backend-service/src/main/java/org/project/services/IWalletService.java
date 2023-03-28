@@ -2,12 +2,11 @@ package org.project.services;
 
 import org.project.dtos.CreateWallet;
 import org.project.dtos.wallet.WalletDTO;
-import org.project.models.Wallet;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public interface WalletService {
+public interface IWalletService {
 
     void debitAmount(Long walletId, BigDecimal amount);
 
@@ -23,4 +22,5 @@ public interface WalletService {
 
     List<WalletDTO> listUserWallets(Long userId) ;
 
+    WalletDTO getWalletByAccountNumber(String accountNumber);
 }

@@ -2,7 +2,7 @@ package org.project.controllers;
 
 import lombok.AllArgsConstructor;
 import org.project.dtos.wallet.TransactionDTO;
-import org.project.services.TransactionService;
+import org.project.services.ITransactionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +14,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TransactionRestController {
 
-    private final TransactionService transactionService;
+    private final ITransactionService transactionService;
 
     @GetMapping("/{userId}/list")
     public ResponseEntity<List<TransactionDTO>> listUserWalletTransactions(

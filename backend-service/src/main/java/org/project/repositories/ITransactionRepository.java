@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface TransactionRepository extends JpaRepository<Transaction, Long> {
+public interface ITransactionRepository extends JpaRepository<Transaction, Long> {
 
 
     // TODO Somehow OR query not working here...

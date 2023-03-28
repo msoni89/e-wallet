@@ -1,6 +1,5 @@
 package org.project.service;
 
-import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -9,14 +8,13 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.project.dtos.CreateWallet;
 import org.project.dtos.CurrencyDTO;
-import org.project.dtos.wallet.UserDTO;
 import org.project.dtos.wallet.WalletDTO;
 import org.project.models.Currency;
 import org.project.models.User;
 import org.project.models.Wallet;
-import org.project.repositories.CurrencyRepository;
-import org.project.repositories.UserRepository;
-import org.project.repositories.WalletRepository;
+import org.project.repositories.ICurrencyRepository;
+import org.project.repositories.IUserRepository;
+import org.project.repositories.IWalletRepository;
 import org.project.services.impl.WalletService;
 
 import java.sql.Timestamp;
@@ -31,13 +29,13 @@ import static org.mockito.Mockito.when;
 public class WalletServiceTests {
 
     @Mock
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
 
     @Mock
-    private WalletRepository walletRepository;
+    private IWalletRepository walletRepository;
 
     @Mock
-    private CurrencyRepository currencyRepository;
+    private ICurrencyRepository currencyRepository;
 
     @InjectMocks
     private WalletService walletService;

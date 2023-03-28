@@ -2,7 +2,7 @@ package org.project.controllers;
 
 import lombok.AllArgsConstructor;
 import org.project.dtos.CurrencyDTO;
-import org.project.services.CurrencyService;
+import org.project.services.ICurrencyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CurrencyRestController {
 
-    private final CurrencyService currencyService;
+    private final ICurrencyService currencyService;
 
     @GetMapping
     private ResponseEntity<List<CurrencyDTO>> findAll() {

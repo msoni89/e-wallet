@@ -219,7 +219,6 @@ public class WalletRestControllerTests {
         String responseBody = mvcResult.getResponse().getContentAsString();
         WalletDTO walletDTO
                 = mapper.readValue(responseBody, WalletDTO.class);
-        System.out.println(walletDTO);
 
         mockMvc.perform(get("/api/v1/wallet/account-number/{accountNumber}", walletDTO.getAccountNumber())
                         .contentType(MediaType.APPLICATION_JSON))

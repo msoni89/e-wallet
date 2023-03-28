@@ -39,19 +39,18 @@ docker-compose -f docker-compose.yaml down
 
 ## Run the application backend-service/frontend-service
 
-## Backend-service
+## Backend-service (http://localhost:8080/swagger-ui/index.html#)
 ```shell
 mvn clean
 mvn compile package -DskipTests=true
 mvn spring-boot:run
 ```
 
-## Frontend-service
+## Frontend-service (http://localhost:9090)
 ```shell
 yarn
 yarn build
 yarn start
 ```
-
 
 

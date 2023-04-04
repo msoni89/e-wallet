@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.project</groupId>
-    <artifactId>kuehne-nagel</artifactId>
+    <artifactId>project02</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>kuehne-nagel</name>
+    <name>Project02</name>
     <modules>
         <module>backend-service</module>
     </modules>
